@@ -6,7 +6,7 @@
 /*   By: jleclerc <jleclerc@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:34:33 by jleclerc          #+#    #+#             */
-/*   Updated: 2025/12/11 17:53:20 by jleclerc         ###   ########.fr       */
+/*   Updated: 2025/12/11 18:28:02 by jleclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 	int		signe;
 	int		count;
 
-	fd = open("Combinaison.txt", O_RDONLY);
+	fd = open("Test.txt", O_RDONLY);
 	line = get_next_line(fd);
 	nb = 50;
 	count = 0;
@@ -34,24 +34,19 @@ int	main(void)
 		nb = (nb + (ft_atoi(line) * signe));
 		if (nb == 0)
 			count++;
-		if (nb < 0)
+		while (nb < 0)
 		{
-			while (nb < 0)
-			{
-				nb += 100;
-				count++;
-			}
+			nb += 100;
+			count++;
 		}
-		else
+		while (nb > 99)
 		{
-			while (nb > 99)
-			{
-				nb -= 100;
-				count++;
-			}
+			nb -= 100;
+			count++;
 		}
+		ft_printf("After all\nNB = %i\nPassword = %i\n\n", nb, count);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	ft_printf("Password = %i\n", count);
+	ft_printf("NB = %i\nPassword = %i\n", nb, count);
 }
