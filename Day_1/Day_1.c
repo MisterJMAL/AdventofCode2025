@@ -6,7 +6,7 @@
 /*   By: jleclerc <jleclerc@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:34:33 by jleclerc          #+#    #+#             */
-/*   Updated: 2025/12/11 17:15:20 by jleclerc         ###   ########.fr       */
+/*   Updated: 2025/12/11 17:53:20 by jleclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,25 @@ int	main(void)
 		if (line[0] == 'L')
 			signe = -1;
 		line[0] = '0';
-		nb = (nb + (ft_atoi(line) * signe)) % 100;
+		nb = (nb + (ft_atoi(line) * signe));
 		if (nb == 0)
 			count++;
+		if (nb < 0)
+		{
+			while (nb < 0)
+			{
+				nb += 100;
+				count++;
+			}
+		}
+		else
+		{
+			while (nb > 99)
+			{
+				nb -= 100;
+				count++;
+			}
+		}
 		line = get_next_line(fd);
 	}
 	close(fd);

@@ -10,7 +10,8 @@ LIB = ../Libft_42/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
-	@$(CC) -I ../Libft_42/ $(SRC) $(LIB) -o $(NAME)
+	$(CC) -I ../Libft_42/ $(SRC) $(LIB) -o $(NAME)
+	@make clean
 
 $(LIB):
 	@cd ../Libft_42/ && make
