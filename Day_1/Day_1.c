@@ -20,8 +20,10 @@ int	main(void)
 	int		nb;
 	int		signe;
 	int		count;
+	int		add;
+	int		i;
 
-	fd = open("Test.txt", O_RDONLY);
+	fd = open("Combinaison.txt", O_RDONLY);
 	line = get_next_line(fd);
 	nb = 50;
 	count = 0;
@@ -31,20 +33,28 @@ int	main(void)
 		if (line[0] == 'L')
 			signe = -1;
 		line[0] = '0';
-		nb = (nb + (ft_atoi(line) * signe));
-		if (nb == 0)
-			count++;
-		while (nb < 0)
+		add = ft_atoi(line) * signe;
+		i = 0;
+		if (signe == 1)
 		{
-			nb += 100;
-			count++;
+			while (i < add)
+			{
+				nb = (nb + 1) % 100;
+				if (nb == 0)
+					count++;
+				i++;
+			}
 		}
-		while (nb > 99)
+		else
 		{
-			nb -= 100;
-			count++;
+			while (i > add)
+			{
+				nb = (nb - 1) % 100;
+				if (nb == 0)
+					count++;
+				i--;
+			}
 		}
-		ft_printf("After all\nNB = %i\nPassword = %i\n\n", nb, count);
 		line = get_next_line(fd);
 	}
 	close(fd);
