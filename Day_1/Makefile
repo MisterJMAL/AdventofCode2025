@@ -3,7 +3,7 @@ CFLAGS = -Wall -Werror -Wextra -ggdb
 SRC = 	Day_1.c
 
 OBJ = $(SRC:.c=.o)
-NAME = Day_1
+NAME = Day_1.a
 
 LIB = ../Libft_42/libft.a
 LIB_PATH = ../Libft_42/

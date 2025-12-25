@@ -1,9 +1,9 @@
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -ggdb
-SRC = 	Day_3.c
+SRC = 	Day_4.c
 
 OBJ = $(SRC:.c=.o)
-NAME = Day_3.a
+NAME = Day_4
 
 LIB = ../Libft_42/libft.a
 LIB_PATH = ../Libft_42/
