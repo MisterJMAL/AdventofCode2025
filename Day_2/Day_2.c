@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Day_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: MrJMAL <jleclerc@learner.42.tech>          +#+  +:+       +#+        */
+/*   By: jleclerc <jleclerc@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:34:33 by jleclerc          #+#    #+#             */
-/*   Updated: 2025/12/13 13:31:25 by MrJMAL           ###   ########.fr       */
+/*   Updated: 2025/12/16 09:32:27 by jleclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,66 @@ int	*ft_range(int a, int b)
 	i = 0;
 	while (a < b + 1)
 		range[i++] = a++;
-	range[i] = '\0';
+	range[i] = -1;
 	return (range);
 }
 
+int ft_check(char *range_ID)
+{
+	int	count;
+	char	**splited;
+	int	*range;
+	int	i;
+	int	j;
+	int	k;
+	char	*nb;
 
+	splited = ft_split(range_ID, '-');
+	range = ft_range(ft_atoi(splited[0]), ft_atoi(splited[1]));
+	free(splited[0]);
+	free(splited[1]);
+	free(splited);
+	i = 0;
+	count = 0;
+	while (range[i] != -1)
+	{
+		nb = ft_itoa(range[i]);
+		j = 0;
+		k = ft_strlen(nb) / 2;
+		while (k < (int) ft_strlen(nb))
+		{
+			if (nb[j] != nb[k])
+				break;
+			j++;
+			k++;
+		}
+		if (k == (int) ft_strlen(nb))
+			count += range[i];
+		i++;
+	}
+	free(range);
+	return (count);
+}
 
 int	main(void)
 {
-	int i;
-	int	len;
-	int	*range;
+	int		i;
 	char	**split;
 	char	*line;
 	int		fd;
+	int	count;
 
 	fd = open("ID-Checks.txt", O_RDONLY);
 	line = get_next_line(fd);
 	split = ft_split(line, ',');
+	i = 0;
+	count = 0;
+	while (split[i] != NULL)
+	{
+		count += ft_check(split[i]);
+		i++;
+	}
+	ft_printf("Count = %d\n", count);
 	close(fd);
 	return (0);
 }

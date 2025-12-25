@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -ggdb
 SRC = 	Day_2.c
 
 OBJ = $(SRC:.c=.o)
