@@ -1,20 +1,21 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -ggdb
 SRC = 	Day_1.c
 
 OBJ = $(SRC:.c=.o)
 NAME = Day_1
 
 LIB = ../Libft_42/libft.a
+LIB_PATH = ../Libft_42/
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(LIB)
-	$(CC) -I ../Libft_42/ $(SRC) $(LIB) -o $(NAME)
+	$(CC) -I $(LIB_PATH) $(SRC) $(LIB) -o $(NAME)
 	@make clean
 
 $(LIB):
-	@cd ../Libft_42/ && make
+	@cd $(LIB_PATH) && make && make clean
 
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS)
