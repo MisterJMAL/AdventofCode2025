@@ -6,19 +6,19 @@
 /*   By: jleclerc <jleclerc@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/02 17:34:33 by jleclerc          #+#    #+#             */
-/*   Updated: 2025/12/16 09:32:27 by jleclerc         ###   ########.fr       */
+/*   Updated: 2025/12/26 14:53:33 by jleclerc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Libft_42/libft.h"
 #include <fcntl.h>
 
-int	*ft_range(int a, int b)
+long long	*ft_range(int a, int b)
 {
-	int	*range;
+	long long	*range;
 	int	i;
 	
-	range = malloc((b - a + 1) * sizeof(int));
+	range = malloc((b - a + 2) * sizeof(long long));
 	if (!range)
 		return (NULL);
 	i = 0;
@@ -28,11 +28,11 @@ int	*ft_range(int a, int b)
 	return (range);
 }
 
-int ft_check(char *range_ID)
+long long ft_check(char *range_ID)
 {
-	int	count;
+	long long	count;
 	char	**splited;
-	int	*range;
+	long long	*range;
 	int	i;
 	int	j;
 	int	k;
@@ -57,7 +57,7 @@ int ft_check(char *range_ID)
 			j++;
 			k++;
 		}
-		if (k == (int) ft_strlen(nb))
+		if ((k == (int) ft_strlen(nb)) && ((k - 1) % 2 != 0))
 			count += range[i];
 		i++;
 	}
@@ -71,7 +71,7 @@ int	main(void)
 	char	**split;
 	char	*line;
 	int		fd;
-	int	count;
+	long long	count;
 
 	fd = open("ID-Checks.txt", O_RDONLY);
 	line = get_next_line(fd);
